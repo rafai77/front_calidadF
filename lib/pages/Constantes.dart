@@ -1,5 +1,5 @@
 class Constant {
-  static const String DOMAIN = "http://192.168.1.67:3000";
+  static const String DOMAIN = "http://192.168.43.211:3000";
 
   static const String WIFI_DISIABLE = "Sin wifi";
   static const String CONECTION_DISIABLE = "Sin conexion al servidor";
