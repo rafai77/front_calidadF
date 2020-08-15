@@ -14,6 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Registros.dart';
 import 'Viewlocal.dart';
 import 'inv-12/Viewlocal12.dart';
+import 'package:calidad/pages/Constantes.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -104,7 +105,7 @@ class _HomeState extends State<Home> {
           response = await http
               .get(
                 //
-                "http://192.168.1.129:3000/invernadero/$id_inver",
+                Constant.DOMAIN + "/invernadero/$id_inver",
                 headers: hd,
               )
               .timeout(const Duration(seconds: 7));

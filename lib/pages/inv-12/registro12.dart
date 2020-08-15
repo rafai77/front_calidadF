@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:calidad/pages/Constantes.dart';
 import 'package:calidad/pages/inv-12/regi12.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
@@ -296,7 +296,7 @@ class _RegistroState12 extends State<Registro12> {
           print(sharedPreferences.getInt('id_inver'));
           var response;
           try {
-            response = await http.put("http://192.168.1.129:3000/actualizar12/",
+            response = await http.put(Constant.DOMAIN + "/actualizar12/",
                 headers: hd,
                 body: {
                   'id': this.r.id_reg.toString(),
@@ -406,7 +406,7 @@ class _RegistroState12 extends State<Registro12> {
           var hd = {'vefificador': sharedPreferences.getString('tk')};
           var response;
           try {
-            response = await http.post("http://192.168.1.129:3000/addC12/",
+            response = await http.post(Constant.DOMAIN + "/addC12/",
                 headers: hd,
                 body: {
                   'REG': json.encode(registro)

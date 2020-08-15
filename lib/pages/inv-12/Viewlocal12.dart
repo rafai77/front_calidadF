@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:calidad/pages/Constantes.dart';
 
 class Viewlocal12 extends StatefulWidget {
   @override
@@ -165,7 +166,7 @@ class _ViewlocalState12 extends State<Viewlocal12> {
         var response;
 
         try {
-          response = await http.post("http://192.168.1.129:3000/addC12/",
+          response = await http.post(Constant.DOMAIN + "/addC12/",
               headers: hd,
               body: {
                 'REG': json.encode(i)

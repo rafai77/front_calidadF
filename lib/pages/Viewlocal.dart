@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Regi.dart';
 import 'registroinfo.dart';
+import 'package:calidad/pages/Constantes.dart';
 
 class Viewlocal extends StatefulWidget {
   @override
@@ -166,7 +167,7 @@ class _ViewlocalState extends State<Viewlocal> {
         var response;
 
         try {
-          response = await http.post("http://192.168.1.129:3000/addC/",
+          response = await http.post(Constant.DOMAIN + "/addC/",
               headers: hd,
               body: {
                 'REG': json.encode(i)

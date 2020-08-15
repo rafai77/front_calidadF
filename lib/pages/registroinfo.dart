@@ -8,6 +8,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'Regi.dart';
+import 'package:calidad/pages/Constantes.dart';
+
 import 'Registros.dart';
 import 'Viewlocal.dart';
 
@@ -62,7 +64,7 @@ class _RegInfoState extends State<RegInfo> {
                     try {
                       response = await http
                           .delete(
-                            "http://192.168.1.129:3000/borrar/$id",
+                            Constant.DOMAIN + "/borrar/$id",
                             headers: hd,
                           )
                           .timeout(const Duration(seconds: 7));

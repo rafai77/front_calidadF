@@ -7,6 +7,7 @@ import 'package:calidad/pages/registroinfo.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:calidad/pages/Constantes.dart';
 
 class RegistrosView12 extends StatefulWidget {
   String invernadero;
@@ -221,7 +222,7 @@ class _RegistrosViewState12 extends State<RegistrosView12> {
 
       try {
         response = await http
-            .post("http://192.168.1.129:3000/registros12/", headers: hd, body: {
+            .post(Constant.DOMAIN + "/registros12/", headers: hd, body: {
           "fecha": _dateTime.toString(),
           "name": this.invernadero,
         }).timeout(const Duration(seconds: 7));

@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:calidad/pages/inv-12/regi12.dart';
 import 'package:calidad/pages/inv-12/registro12.dart';
 import 'package:calidad/pages/registro.dart';
+import 'package:calidad/pages/Constantes.dart';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -61,7 +63,7 @@ class _RegInfoState12 extends State<RegInfo12> {
                     try {
                       response = await http
                           .delete(
-                            "http://192.168.1.129:3000/borrar12/$id",
+                            Constant.DOMAIN + "/borrar12/$id",
                             headers: hd,
                           )
                           .timeout(const Duration(seconds: 7));

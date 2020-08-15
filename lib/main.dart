@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:calidad/pages/Constantes.dart';
 import 'package:calidad/pages/Viewlocal.dart';
 import 'package:calidad/pages/Constantes.dart';
+import 'package:calidad/pages/Constantes.dart';
 import 'package:calidad/pages/Registros.dart';
 import 'package:calidad/pages/home.dart';
 import 'package:calidad/pages/inv-12/Registros12.dart';
@@ -140,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
       //loggin = true;
       var response;
       try {
-        response = await http.post("http://192.168.1.129:3000/loggin/", body: {
+        response = await http.post(Constant.DOMAIN + "/loggin/", body: {
           "user": usert.text,
           "pass": passt.text,
         }).timeout(const Duration(seconds: 7));
