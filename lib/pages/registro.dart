@@ -35,14 +35,16 @@ class _RegistroState extends State<Registro> {
   TextEditingController numC2 = TextEditingController(); // numero de color 2
   TextEditingController numC3 = TextEditingController(); // numero de color 3
   TextEditingController tam = TextEditingController(); // tamaño
-  TextEditingController brix = TextEditingController(); // tamaño
-  TextEditingController brix2 = TextEditingController(); // tamaño
+  TextEditingController lado = TextEditingController(); // tamaño
+
   int pudricion = 0;
   int v;
   DateTime _dateTime;
   Regi r;
   int id = 0;
   String invernadero;
+  bool ladoi = false; // false es para S y true para N
+  String laredo = "";
 
   var dano = {
     'pudricion': 0,
@@ -72,8 +74,6 @@ class _RegistroState extends State<Registro> {
       numC2.text = this.r.num_color4.toString();
       numC3.text = this.r.num_color5.toString();
       tam.text = this.r.tamchico.toString();
-      brix.text = this.r.Brix.toString();
-      brix2.text = this.r.Brix.toString();
       dano['pudricion'] = this.r.pudricion;
       dano['dano_Tallo'] = this.r.tallo;
       dano['Flojo'] = this.r.flojo;
@@ -86,6 +86,7 @@ class _RegistroState extends State<Registro> {
       dano['Color Disparejo'] = this.r.color_disparejo;
       dano['Caliz'] = this.r.caliz;
       dano['Color_X_Virus'] = this.r.viruz;
+      lado.text = this.r.lado.toString();
       editar = true;
     }
   }
@@ -140,6 +141,42 @@ class _RegistroState extends State<Registro> {
             child: TextFormField(
               controller: t,
               keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                  labelText: n,
+                  hintText: n,
+                  icon: Icon(
+                    Icons.brightness_low,
+                  )),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  cajaS(String n, TextEditingController t) {
+    return Container(
+      // para las cajas de texto
+      height: MediaQuery.of(context).size.height * .1,
+      width: MediaQuery.of(context).size.width * .5,
+      padding: EdgeInsets.only(top: 5),
+      child: Column(
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width * .49,
+            padding: EdgeInsets.only(top: 1, left: 16, right: 16, bottom: 4),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 5,
+                  ),
+                ]),
+            child: TextFormField(
+              controller: t,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
                   labelText: n,
                   hintText: n,
@@ -227,8 +264,7 @@ class _RegistroState extends State<Registro> {
         numC1 == "" ||
         numC2 == "" ||
         numC3 == "" ||
-        tam.text == "" ||
-        brix.text == "") {
+        tam.text == "") {
       setState(() {
         mensaje = "Cajas de texto vacias\nComplete todos los espacios";
         _showMyDialog();
@@ -257,8 +293,6 @@ class _RegistroState extends State<Registro> {
           'num_color4': int.parse(numC2.text),
           'num_color5': int.parse(numC3.text),
           'tamchico': int.parse(tam.text),
-          'Brix': double.parse(brix.text),
-          'Brix2': double.parse(brix2.text),
           'pudricion': dano['pudricion'],
           'tallo': dano['dano_Tallo'],
           "flojo": dano["Flojo"],
@@ -275,6 +309,7 @@ class _RegistroState extends State<Registro> {
           "fecha": DateTime.parse(this.r.fecha)
               .toString()
               .substring(0, DateTime.parse(this.r.fecha).toString().length - 2),
+          "lado": laredo
         };
 
         var conecctionResult = await Connectivity().checkConnectivity();
@@ -367,8 +402,7 @@ class _RegistroState extends State<Registro> {
           'num_color4': int.parse(numC2.text),
           'num_color5': int.parse(numC3.text),
           'tamchico': int.parse(tam.text),
-          'Brix': double.parse(brix.text),
-          'Brix2': double.parse(brix2.text),
+          "lado": laredo,
           'pudricion': dano['pudricion'],
           'tallo': dano['dano_Tallo'],
           "flojo": dano["Flojo"],
@@ -382,7 +416,7 @@ class _RegistroState extends State<Registro> {
           "color_disparejo": dano["Color Disparejo"],
           "caliz": dano["Caliz"],
           "viruz": dano["Color_X_Virus"],
-          "fecha": _dateTime.toString()
+          "fecha": _dateTime.toString(),
         };
         print(json.encode(registro));
         var conecctionResult = await Connectivity().checkConnectivity();
@@ -518,8 +552,19 @@ class _RegistroState extends State<Registro> {
                     caja("Color-4", numC2),
                     caja("Color-5", numC3),
                     caja("Tamaño Menor", tam),
-                    caja("Brix", brix),
-                    caja("Brix2", brix2),
+                    Text("Lado =" + laredo),
+                    Switch(
+                        value: ladoi,
+                        onChanged: (val) {
+                          setState(() {
+                            ladoi = val;
+                            if (ladoi)
+                              laredo = "N";
+                            else
+                              laredo = "S";
+                            print(laredo);
+                          });
+                        }),
                   ],
                 ),
               ),

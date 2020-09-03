@@ -254,8 +254,6 @@ class _ViewlocalState extends State<Viewlocal> {
           i['num_color4'],
           i["num_color5"],
           i['tamchico'],
-          i["Brix"],
-          i["Brix2"],
           i['pudricion'],
           i['tallo'],
           i['flojo'],
@@ -269,7 +267,8 @@ class _ViewlocalState extends State<Viewlocal> {
           i['color_disparejo'],
           i['caliz'],
           i['viruz'],
-          i['fecha']);
+          i['fecha'],
+          i['lado']);
       //print(r.blossom);
       aux.add(r);
     }

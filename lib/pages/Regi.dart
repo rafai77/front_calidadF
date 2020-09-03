@@ -10,8 +10,6 @@ class Regi {
   int num_color4;
   int num_color5;
   int tamchico;
-  dynamic Brix;
-  dynamic Brix2;
   int pudricion;
   int tallo;
   int flojo;
@@ -26,6 +24,7 @@ class Regi {
   int caliz;
   int viruz;
   String fecha;
+  String lado;
 
   Regi(
       this.id_reg,
@@ -36,8 +35,6 @@ class Regi {
       this.num_color4,
       this.num_color5,
       this.tamchico,
-      this.Brix,
-      this.Brix2,
       this.pudricion,
       this.tallo,
       this.flojo,
@@ -51,5 +48,6 @@ class Regi {
       this.color_disparejo,
       this.caliz,
       this.viruz,
-      this.fecha);
+      this.fecha,
+      this.lado);
 }

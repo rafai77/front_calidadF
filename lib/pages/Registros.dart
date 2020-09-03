@@ -261,8 +261,6 @@ class _RegistrosViewState extends State<RegistrosView> {
               i['num_color4'],
               i["num_color5"],
               i['tamchico'],
-              i["Brix"],
-              i["Brix2"],
               i['pudricion'],
               i['tallo'],
               i['flojo'],
@@ -276,7 +274,9 @@ class _RegistrosViewState extends State<RegistrosView> {
               i['color_disparejo'],
               i['caliz'],
               i['viruz'],
-              i['fecha']);
+              i['fecha'],
+              i['lado']);
+
           aux.add(r);
         }
         setState(() {

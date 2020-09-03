@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
 import 'package:calidad/pages/inv-12/Registros12.dart';
 import 'package:calidad/pages/inv-12/registro12.dart';

@@ -139,6 +139,7 @@ class _LoginPageState extends State<LoginPage> {
     if (vefificarT()) {
       print("1.2");
       //loggin = true;
+      print(Constant.DOMAIN + "/loggin/");
       var response;
       try {
         response = await http.post(Constant.DOMAIN + "/loggin/", body: {
@@ -155,11 +156,25 @@ class _LoginPageState extends State<LoginPage> {
       } on SocketException {
         setState(() {
           loggin = false;
-          throw ('Sin internet  o falla de servidor ');
+          _showMyDialog();
+          loggin = false;
         });
+        throw ('Sin internet  o falla de servidor sock');
       } on HttpException {
+        setState(() {
+          loggin = false;
+          mensaje = "peticion mal";
+          _showMyDialog();
+          loggin = false;
+        });
         throw ("No se encontro esa peticion");
       } on FormatException {
+        setState(() {
+          loggin = false;
+          mensaje = "peticion maal";
+          _showMyDialog();
+          loggin = false;
+        });
         throw ("Formato erroneo ");
       }
 

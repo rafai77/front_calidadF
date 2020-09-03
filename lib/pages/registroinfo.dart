@@ -145,8 +145,6 @@ class _RegInfoState extends State<RegInfo> {
                         Text("Color4 = " + r.num_color4.toString()),
                         Text("Color5 = " + r.num_color5.toString()),
                         Text("Tamañp chico = " + r.tamchico.toString()),
-                        Text("Brix = " + r.Brix.toString()),
-                        Text("Brix2 = " + r.Brix2.toString()),
                         Text("Pudicion = " + r.pudricion.toString()),
                         Text("tallo = " + r.tallo.toString()),
                         Text("flojo = " + r.flojo.toString()),
@@ -162,6 +160,7 @@ class _RegInfoState extends State<RegInfo> {
                         Text("Caliz = " + r.caliz.toString()),
                         Text("Virus = " + r.viruz.toString()),
                         Text("Fecha = " + r.fecha.toString()),
+                        Text("lado = " + r.lado.toString())
                       ],
                     )))));
   }
