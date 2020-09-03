@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
         response = await http.post(Constant.DOMAIN + "/loggin/", body: {
           "user": usert.text,
           "pass": passt.text,
-        }).timeout(const Duration(seconds: 7));
+        }).timeout(const Duration(seconds: 15));
       } on TimeoutException catch (_) {
         setState(() {
           mensaje = 'Sin conexion al servidor';

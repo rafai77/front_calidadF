@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:calidad/pages/Brixs.dart';
 import 'package:calidad/pages/inv-12/Registros12.dart';
 import 'package:calidad/pages/inv-12/registro12.dart';
 import 'package:calidad/pages/registro.dart';
@@ -170,7 +171,75 @@ class _HomeState extends State<Home> {
     });
   }
 
-  targetaInvernadero() {
+  tarjetaBrix() {
+    return Container(
+      height: MediaQuery.of(context).size.height * .3,
+      width: MediaQuery.of(context).size.width / 2,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+        color: Colors.blue[100],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            offset: Offset(0.0, 10.0),
+            blurRadius: 10.0,
+          ),
+        ],
+      ),
+      child: Column(
+        children: <Widget>[
+          Center(
+              heightFactor: 2,
+              child: Text("Brix´s ",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black38,
+                  ))),
+          Center(
+            child: Container(
+              padding: EdgeInsets.only(
+                  top: (MediaQuery.of(context).size.height * .03)),
+              child: DropdownButton<String>(
+                value: dropdownValue1,
+                icon: Icon(Icons.arrow_drop_down),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(color: Colors.blue),
+                underline: Container(
+                  height: 2,
+                  color: Colors.green,
+                ),
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropdownValue1 = newValue;
+                  });
+                },
+                items: listaInven.values
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+          ),
+          Center(
+            heightFactor: MediaQuery.of(context).size.height * .0025,
+            child: FloatingActionButton(
+              onPressed: agregarBrix,
+              heroTag: "AddBrix",
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  tarjetaInvernadero() {
     return Container(
       height: MediaQuery.of(context).size.height * .3,
       width: MediaQuery.of(context).size.width / 2,
@@ -238,7 +307,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  targetaViewlocal() {
+  tarjetaViewlocal() {
     return Container(
       height: MediaQuery.of(context).size.height * .3,
       width: MediaQuery.of(context).size.width / 2,
@@ -307,7 +376,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  targetaView() {
+  tarjetaView() {
     return Container(
       height: MediaQuery.of(context).size.height * .3,
       width: MediaQuery.of(context).size.width / 2,
@@ -383,12 +452,12 @@ class _HomeState extends State<Home> {
           margin: EdgeInsets.only(left: 7, top: 5),
           width: MediaQuery.of(context).size.width * .47,
           padding: EdgeInsets.only(right: 5),
-          child: targetaInvernadero(),
+          child: tarjetaInvernadero(),
         ),
         Container(
           margin: EdgeInsets.only(left: 8, top: 5),
           width: MediaQuery.of(context).size.width * .47,
-          child: targetaView(),
+          child: tarjetaView(),
         ),
       ],
     );
@@ -412,6 +481,10 @@ class _HomeState extends State<Home> {
           : Column(
               children: <Widget>[
                 tarjetas(),
+                Container(
+                  margin: EdgeInsets.only(top: 15),
+                  child: tarjetaBrix(),
+                ),
                 Container(
                   margin: EdgeInsets.only(top: 35),
                   child: Center(
@@ -504,6 +577,28 @@ class _HomeState extends State<Home> {
                   dropdownValue1,
                   id_inver)));
     }
+  }
+
+  agregarBrix() async {
+    print("agregar brix" + dropdownValue1);
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var id_inver = 0;
+    var conecctionResult = await Connectivity().checkConnectivity();
+    if (conecctionResult != ConnectivityResult.none) {
+      for (var i in ldI) {
+        if (i['Nombre'] == dropdownValue1) {
+          print(i['id_inver']);
+          id_inver = i['id_inver'];
+        }
+      }
+    } else {
+      id_inver = sharedPreferences.getInt('id_inver');
+    }
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                Brixs(sharedPreferences.getString('user'), dropdownValue2)));
   }
 
   vista() async {

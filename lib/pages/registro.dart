@@ -429,7 +429,7 @@ class _RegistroState extends State<Registro> {
                 headers: hd,
                 body: {
                   'REG': json.encode(registro)
-                }).timeout(const Duration(seconds: 7));
+                }).timeout(const Duration(seconds: 15));
           } on TimeoutException catch (_) {
             setState(() {
               sinConexion(registro);

@@ -9,30 +9,29 @@ import 'package:calidad/pages/Constantes.dart';
 
 import 'Regi.dart';
 
-class RegistrosView extends StatefulWidget {
+class Brixs extends StatefulWidget {
   String invernadero;
   String user;
-  RegistrosView([this.user, this.invernadero]);
+  Brixs(this.user, this.invernadero);
   @override
-  _RegistrosViewState createState() =>
-      _RegistrosViewState(this.user, this.invernadero);
+  _BrixsState createState() => _BrixsState(this.user, this.invernadero);
 }
 
-class _RegistrosViewState extends State<RegistrosView> {
+class _BrixsState extends State<Brixs> {
   String invernadero;
-  DateTime _dateTime;
+  String user;
   bool lista;
   Future fregistros;
-  String user;
   String mensaje;
   StreamController<List<Regi>> ldR; //lista de registros
-  _RegistrosViewState([this.user, this.invernadero]);
+  DateTime _dateTime;
+  _BrixsState(this.user, this.invernadero);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text("Registros"),
+        title: Text("Brix's"),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.refresh),
