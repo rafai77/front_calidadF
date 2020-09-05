@@ -76,7 +76,7 @@ class _RegistrosViewState extends State<RegistrosView> {
                           cancelText: null,
                           context: context,
                           initialDate: _dateTime,
-                          firstDate: DateTime(2001),
+                          firstDate: DateTime(2019),
                           lastDate: DateTime(2030),
                         ).then((date) {
                           setState(() {
@@ -192,8 +192,6 @@ class _RegistrosViewState extends State<RegistrosView> {
           )),
     );
   }
-
-  reginfo() async {}
 
   @override
   void initState() {
