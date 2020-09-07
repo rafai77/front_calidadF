@@ -129,8 +129,8 @@ class _BrixsState extends State<Brixs> {
         throw ("Formato erroneo ");
       }
 
-      datos = response.body;
-
+      datos = json.decode(response.body);
+      print(datos["fecha"]);
       caja();
       //print(data);
     }
