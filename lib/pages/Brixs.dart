@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:calidad/pages/BrixE.dart';
 import 'package:calidad/pages/registroinfo.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +25,7 @@ class _BrixsState extends State<Brixs> {
   bool lista;
   Future fregistros;
   String mensaje;
-  var datos;
+  var datos = null;
   _BrixsState(this.user, this.invernadero);
 
   caja() {
@@ -43,7 +44,22 @@ class _BrixsState extends State<Brixs> {
       ),
       child: InkWell(
           splashColor: Colors.blue,
-          onTap: () => {print("Pagina para agragar brix")},
+          onTap: () => {
+                if (datos["cantidad"] != null)
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BrixRegistro(
+                              datos["fecha"].substring(0, 10),
+                              "Invernadero-11")))
+                else
+                  {
+                    setState(() {
+                      mensaje = "Dia invalido";
+                      _showMyDialog();
+                    })
+                  }
+              },
           child: Column(
             children: <Widget>[
               Text("Ingresar Los Brix´s\n"),
