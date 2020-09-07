@@ -28,11 +28,29 @@ class _BrixsState extends State<Brixs> {
   _BrixsState(this.user, this.invernadero);
 
   caja() {
-    print(datos);
+    if (datos == null) {
+      datos = {"fecha": "sin datos para mostrar", "Cantidad": 0};
+    }
+    if (datos["fecha"] == null)
+      datos = {"fecha": "sin datos para mostrar", "Cantidad": 0};
     return Container(
-      child: Column(
-          // children: <Widget>[Text(datos[0].fecha), Text(datos[0].cantidad)],
-          ),
+      width: MediaQuery.of(context).size.width * .75,
+      padding: EdgeInsets.only(top: 15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        boxShadow: [BoxShadow(color: Colors.blue, blurRadius: 5)],
+      ),
+      child: InkWell(
+          splashColor: Colors.blue,
+          onTap: () => {print("Pagina para agragar brix")},
+          child: Column(
+            children: <Widget>[
+              Text("Ingresar Los Brix´s\n"),
+              Text("Dia: " + datos["fecha"].substring(0, 10)),
+              Text("N.Surcos: " + datos["cantidad"].toString()),
+            ],
+          )),
     );
   }
 
@@ -56,9 +74,6 @@ class _BrixsState extends State<Brixs> {
                 children: <Widget>[
                   Center(
                       child: Container(
-                    padding: EdgeInsets.only(
-                      bottom: (MediaQuery.of(context).size.height * .70),
-                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -94,11 +109,7 @@ class _BrixsState extends State<Brixs> {
                       ],
                     ),
                   )),
-                  Container(
-                    child: Center(
-                      child: caja(),
-                    ),
-                  )
+                  caja(),
                 ])));
   }
 
@@ -128,10 +139,12 @@ class _BrixsState extends State<Brixs> {
       } on FormatException {
         throw ("Formato erroneo ");
       }
+      setState(() {
+        datos = json.decode(response.body);
+      });
 
-      datos = json.decode(response.body);
-      print(datos["fecha"]);
-      caja();
+      print(datos);
+
       //print(data);
     }
   }
