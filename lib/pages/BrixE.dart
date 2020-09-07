@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:wasm';
 import 'package:calidad/pages/Constantes.dart';
 
 import 'package:connectivity/connectivity.dart';
@@ -25,6 +26,8 @@ class BrixRegistro extends StatefulWidget {
 class _BrixRegistroState extends State<BrixRegistro> {
   String fecha;
   String invernadero;
+  String mensaje;
+  String tabla;
   TextEditingController brix1 = TextEditingController(); // numero del tunel
   TextEditingController brix2 = TextEditingController();
 
@@ -50,11 +53,88 @@ class _BrixRegistroState extends State<BrixRegistro> {
                     caja("brix2", brix2),
                     FloatingActionButton(
                         backgroundColor: Colors.green,
-                        onPressed: null,
+                        onPressed: add,
                         tooltip: 'Increment',
                         child: Icon(Icons.add)),
                   ],
                 ))));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (this.invernadero == "Invernadero-11") this.tabla = "totales11";
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("ERROR"),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('ERROR.'),
+                Text(mensaje),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('aceptar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  add() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getString('tk') != null) {
+      var hd = {'vefificador': sharedPreferences.getString('tk')};
+      Map<String, dynamic> body = {
+        "fecha": this.fecha,
+        "tabla": this.tabla,
+        "Brix": (brix1.text),
+        "Brix2": (brix2.text)
+      };
+      var response;
+      try {
+        response = await http
+            .put(Constant.DOMAIN + "/blixadd/", headers: hd, body: body)
+            .timeout(const Duration(seconds: 15));
+      } on TimeoutException catch (_) {
+        setState(() {
+          mensaje = 'Sin conexion al servidor';
+          _showMyDialog();
+        });
+        throw ('Sin conexion al servidor');
+      } on SocketException {
+        setState(() {
+          throw ('Sin internet  o falla de servidor ');
+        });
+      } on HttpException {
+        throw ("No se encontro esa peticion");
+      } on FormatException {
+        throw ("Formato erroneo ");
+      }
+      setState(() {
+        var data = json.decode(response.body);
+        print(data);
+        if (!data["error"])
+          Navigator.pop(context);
+        else {
+          mensaje = data["status"] + "\n";
+          Navigator.pop(context);
+        }
+      });
+    }
   }
 
   caja(String n, TextEditingController t) {
