@@ -32,7 +32,6 @@ class Regi16 {
   int arrudago;
   int blotchy;
   int suelto;
-  int viruz;
   String fecha;
 
   Regi16(
@@ -66,7 +65,6 @@ class Regi16 {
     this.arrudago,
     this.blotchy,
     this.suelto,
-    this.viruz,
     this.fecha,
   );
 }

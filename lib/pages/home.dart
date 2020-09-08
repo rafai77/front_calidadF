@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:calidad/pages/Brixs.dart';
 import 'package:calidad/pages/inv-12/Registros12.dart';
 import 'package:calidad/pages/inv-12/registro12.dart';
+import 'package:calidad/pages/inv-16/registro16.dart';
 import 'package:calidad/pages/registro.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:http/http.dart' as http;
@@ -572,6 +573,17 @@ class _HomeState extends State<Home> {
           context,
           MaterialPageRoute(
               builder: (context) => Registro12(
+                  sharedPreferences.getInt('id'),
+                  sharedPreferences.getString('user'),
+                  dropdownValue1,
+                  id_inver)));
+    }
+    if (sharedPreferences.getInt('id_inver') == 16) {
+      print("sdf");
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Registro16(
                   sharedPreferences.getInt('id'),
                   sharedPreferences.getString('user'),
                   dropdownValue1,
