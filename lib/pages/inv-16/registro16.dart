@@ -37,6 +37,7 @@ class _Registro16State extends State<Registro16> {
   TextEditingController rac5 = TextEditingController(); // racero de color 2
   TextEditingController rac6 = TextEditingController(); // numero de color 3
   TextEditingController tam = TextEditingController(); // tamaño
+  TextEditingController peso = TextEditingController(); // tamaño
   TextEditingController lado = TextEditingController(); // lado
 
   var dano = {
@@ -44,7 +45,7 @@ class _Registro16State extends State<Registro16> {
     "Flojo": 0,
     "Dano_Mecanico": 0,
     "Blossom": 0,
-    "Reventado": 0,
+    "Golpe": 0,
     "Mal_cierre": 0,
     "Deforme": 0,
     "Incecto_presencia": 0,
@@ -57,6 +58,7 @@ class _Registro16State extends State<Registro16> {
     "Arrudago": 0,
     "Blotchy": 0,
     "Suelto": 0,
+    "Daño_x_virus": 0
   };
 
   int pudricion = 0;
@@ -248,18 +250,20 @@ class _Registro16State extends State<Registro16> {
           "racimo5": int.parse(rac5.text),
           "racimo6": int.parse(rac6.text),
           'tamchico': int.parse(tam.text),
+          "peso": int.parse(peso.text),
           'pudricion': dano['pudricion'],
           "flojo": dano["Flojo"],
           "mecanico": dano['Dano_Mecanico'],
           "blossom": dano['Blossom'],
-          "reventado": dano["Reventado"],
           "cierre": dano["Mal_cierre"],
           "deforme": dano["Deforme"],
           "cicatriz": dano["Cicatriz"],
           "insecto_daño": dano["Dano_X_insecto"],
           "insecto_presencia": dano["Incecto_presencia"],
+          "dano_virus": dano["Daño_x_virus"],
           "craking": dano["Craking"],
           "corte": dano["Corte"],
+          "golpe": dano["Golpe"],
           "exverde": dano["Extra_verde"],
           "arrudago": dano["arrudago"],
           "blotchy": dano["Blotchy"],
@@ -364,26 +368,26 @@ class _Registro16State extends State<Registro16> {
           "racimo5": int.parse(rac5.text),
           "racimo6": int.parse(rac6.text),
           'tamchico': int.parse(tam.text),
+          "peso": double.parse(peso.text),
           'pudricion': dano['pudricion'],
           "flojo": dano["Flojo"],
           "mecanico": dano['Dano_Mecanico'],
           "blossom": dano['Blossom'],
-          "reventado": dano["Reventado"],
           "cierre": dano["Mal_cierre"],
           "deforme": dano["Deforme"],
           "cicatriz": dano["Cicatriz"],
           "insecto_daño": dano["Dano_X_insecto"],
           "insecto_presencia": dano["Incecto_presencia"],
+          "dano_virus": dano["Daño_x_virus"],
           "craking": dano["Craking"],
           "corte": dano["Corte"],
+          "golpe": dano["Golpe"],
           "exverde": dano["Extra_verde"],
-          "arrudago": dano["arrudago"],
+          "arrudago": dano["Arrudago"],
           "blotchy": dano["Blotchy"],
           "suelto": dano["Suelto"],
           "color_disparejo": dano["Color Disparejo"],
-          "fecha": DateTime.parse(this.r.fecha)
-              .toString()
-              .substring(0, DateTime.parse(this.r.fecha).toString().length - 2),
+          "fecha": _dateTime.toString(),
           "lado": laredo
         };
         print(json.encode(registro));
@@ -393,7 +397,7 @@ class _Registro16State extends State<Registro16> {
           var hd = {'vefificador': sharedPreferences.getString('tk')};
           var response;
           try {
-            response = await http.post(Constant.DOMAIN + "/addC/",
+            response = await http.post(Constant.DOMAIN + "/addC16/",
                 headers: hd,
                 body: {
                   'REG': json.encode(registro)
@@ -515,7 +519,7 @@ class _Registro16State extends State<Registro16> {
                       children: <Widget>[Text("Checador= " + nuser)],
                     ),
                     Text(invernadero),
-                    caja("Numero de tunel", numT),
+                    caja("Tunel", numT),
                     caja("racimo-1", rac1),
                     caja("racimo-2", rac2),
                     caja("racimo-3", rac3),
@@ -523,6 +527,7 @@ class _Registro16State extends State<Registro16> {
                     caja("racimo-5", rac5),
                     caja("racimo-6", rac6),
                     caja("Tamaño Menor", tam),
+                    caja("Peso", peso),
                     Text("Lado =" + laredo),
                     Switch(
                         value: ladoi,
@@ -569,7 +574,7 @@ class _Registro16State extends State<Registro16> {
                               danos("Flojo"),
                               danos("Dano_Mecanico"),
                               danos("Blossom"),
-                              danos("Reventado"),
+                              danos("Golpe"),
                               danos("Mal_cierre"),
                               danos("Craking"),
                               danos("Extra_verde"),
@@ -601,6 +606,7 @@ class _Registro16State extends State<Registro16> {
                               danos("Arrudago"),
                               danos("Blotchy"),
                               danos("Suelto"),
+                              danos("Daño_x_virus"),
                             ],
                           ),
                         ),

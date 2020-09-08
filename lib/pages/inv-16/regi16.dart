@@ -14,11 +14,11 @@ class Regi16 {
   int tamchico;
   String lado;
   dynamic peso;
+  int dano_virus;
   int pudricion;
   int flojo;
   int mecanico;
   int blossom;
-  int reventado;
   int cierre;
   int deforme;
   int cicatriz;
@@ -51,7 +51,7 @@ class Regi16 {
     this.flojo,
     this.mecanico,
     this.blossom,
-    this.reventado,
+    this.dano_virus,
     this.cierre,
     this.deforme,
     this.cicatriz,
