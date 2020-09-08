@@ -9,10 +9,6 @@ class Regi12 {
   int num_color4;
   int num_color5;
   int tamchico;
-  dynamic Brix1;
-  dynamic Brix2;
-  dynamic Brix3;
-  dynamic Brix4;
   dynamic peso;
   int pudricion;
   int tallo;
@@ -28,6 +24,7 @@ class Regi12 {
   int caliz;
   int viruz;
   String fecha;
+  String lado;
 
   Regi12(
       this.id_reg,
@@ -38,10 +35,6 @@ class Regi12 {
       this.num_color4,
       this.num_color5,
       this.tamchico,
-      this.Brix1,
-      this.Brix2,
-      this.Brix3,
-      this.Brix4,
       this.peso,
       this.pudricion,
       this.tallo,
@@ -56,5 +49,6 @@ class Regi12 {
       this.color_disparejo,
       this.caliz,
       this.viruz,
-      this.fecha);
+      this.fecha,
+      this.lado);
 }

@@ -34,10 +34,6 @@ class _RegistroState12 extends State<Registro12> {
   TextEditingController numC2 = TextEditingController(); // numero de color 2
   TextEditingController numC3 = TextEditingController(); // numero de color 3
   TextEditingController tam = TextEditingController(); // tamaño
-  TextEditingController brix1 = TextEditingController(); // tamaño
-  TextEditingController brix2 = TextEditingController(); // tamaño
-  TextEditingController brix3 = TextEditingController(); // tamaño
-  TextEditingController brix4 = TextEditingController(); // tamaño
   TextEditingController peso = TextEditingController(); // tamaño
   int pudricion = 0;
   int v;
@@ -45,6 +41,8 @@ class _RegistroState12 extends State<Registro12> {
   Regi12 r;
   int id = 0;
   String invernadero;
+  bool ladoi = false; // false es para S y true para N
+  String laredo = "S";
 
   var dano = {
     'pudricion': 0,
@@ -74,10 +72,6 @@ class _RegistroState12 extends State<Registro12> {
       numC2.text = this.r.num_color4.toString();
       numC3.text = this.r.num_color5.toString();
       tam.text = this.r.tamchico.toString();
-      brix1.text = this.r.Brix1.toString();
-      brix2.text = this.r.Brix2.toString();
-      brix3.text = this.r.Brix3.toString();
-      brix4.text = this.r.Brix4.toString();
       peso.text = this.r.peso.toString();
       dano['pudricion'] = this.r.pudricion;
       dano['dano_Tallo'] = this.r.tallo;
@@ -233,10 +227,6 @@ class _RegistroState12 extends State<Registro12> {
         numC2 == "" ||
         numC3 == "" ||
         tam.text == "" ||
-        brix1.text == "" ||
-        brix2.text == "" ||
-        brix3.text == "" ||
-        brix4.text == "" ||
         peso.text == "") {
       setState(() {
         mensaje = "Cajas de texto vacias\nComplete todos los espacios";
@@ -266,11 +256,7 @@ class _RegistroState12 extends State<Registro12> {
           'num_color4': int.parse(numC2.text),
           'num_color5': int.parse(numC3.text),
           'tamchico': int.parse(tam.text),
-          'Brix1': double.parse(brix1.text),
-          'Brix2': double.parse(brix2.text),
-          'Brix3': double.parse(brix3.text),
-          'Brix4': double.parse(brix4.text),
-          'peso': double.parse(brix4.text),
+          'peso': double.parse(peso.text),
           'pudricion': dano['pudricion'],
           'tallo': dano['dano_Tallo'],
           "flojo": dano["Flojo"],
@@ -379,11 +365,8 @@ class _RegistroState12 extends State<Registro12> {
           'num_color4': int.parse(numC2.text),
           'num_color5': int.parse(numC3.text),
           'tamchico': int.parse(tam.text),
-          'Brix1': double.parse(brix1.text),
-          'Brix2': double.parse(brix2.text),
-          'Brix3': double.parse(brix3.text),
-          'Brix4': double.parse(brix4.text),
-          'peso': double.parse(brix4.text),
+          'peso': double.parse(peso.text),
+          "lado": laredo,
           'pudricion': dano['pudricion'],
           'tallo': dano['dano_Tallo'],
           "flojo": dano["Flojo"],
@@ -533,11 +516,20 @@ class _RegistroState12 extends State<Registro12> {
                     caja("Color-4", numC2),
                     caja("Color-5", numC3),
                     caja("Tamaño Menor", tam),
-                    caja("Brix", brix1),
-                    caja("Brix2", brix2),
-                    caja("Brix3", brix3),
-                    caja("Brix4", brix4),
                     caja("peso", peso),
+                    Text("Lado =" + laredo),
+                    Switch(
+                        value: ladoi,
+                        onChanged: (val) {
+                          setState(() {
+                            ladoi = val;
+                            if (ladoi)
+                              laredo = "N";
+                            else
+                              laredo = "S";
+                            print(laredo);
+                          });
+                        }),
                   ],
                 ),
               ),

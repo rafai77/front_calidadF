@@ -44,7 +44,7 @@ class _RegistroState extends State<Registro> {
   int id = 0;
   String invernadero;
   bool ladoi = false; // false es para S y true para N
-  String laredo = "";
+  String laredo = "S";
 
   var dano = {
     'pudricion': 0,
