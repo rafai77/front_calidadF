@@ -250,7 +250,7 @@ class _Registro16State extends State<Registro16> {
           "racimo5": int.parse(rac5.text),
           "racimo6": int.parse(rac6.text),
           'tamchico': int.parse(tam.text),
-          "peso": int.parse(peso.text),
+          "peso": double.parse(peso.text),
           'pudricion': dano['pudricion'],
           "flojo": dano["Flojo"],
           "mecanico": dano['Dano_Mecanico'],
