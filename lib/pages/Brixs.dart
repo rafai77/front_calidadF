@@ -134,12 +134,21 @@ class _BrixsState extends State<Brixs> {
     if (sharedPreferences.getString('tk') != null) {
       Map<String, String> dat = {"fecha": _dateTime.toString()};
       var hd = {'vefificador': sharedPreferences.getString('tk')};
+      var inv = "";
+      if (this.invernadero == "Invernadero-12") {
+        inv = "totales12";
+      }
+      if (this.invernadero == "Invernadero-11") {
+        inv = "totales11";
+      }
       var response;
       try {
-        response =
-            await http.post(Constant.DOMAIN + "/brix/", headers: hd, body: {
-          "fecha": _dateTime.toString(),
-        }).timeout(const Duration(seconds: 15));
+        response = await http.post(Constant.DOMAIN + "/brix/",
+            headers: hd,
+            body: {
+              "fecha": _dateTime.toString(),
+              "tabla": inv
+            }).timeout(const Duration(seconds: 15));
       } on TimeoutException catch (_) {
         setState(() {
           mensaje = 'Sin conexion al servidor';
