@@ -18,6 +18,8 @@ import 'Viewlocal.dart';
 import 'inv-12/Viewlocal12.dart';
 import 'package:calidad/pages/Constantes.dart';
 
+import 'inv-15/Registros15.dart';
+import 'inv-15/registro15.dart';
 import 'inv-16/Viewlocal16.dart';
 
 class Home extends StatefulWidget {
@@ -262,7 +264,7 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           Center(
               heightFactor: 2,
-              child: Text("Seleccione el invernadero ",
+              child: Text("Agregar un Registro",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -585,6 +587,16 @@ class _HomeState extends State<Home> {
                   dropdownValue1,
                   id_inver)));
     }
+    if (sharedPreferences.getInt('id_inver') == 15) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Registro15(
+                  sharedPreferences.getInt('id'),
+                  sharedPreferences.getString('user'),
+                  dropdownValue1,
+                  id_inver)));
+    }
     if (sharedPreferences.getInt('id_inver') == 16) {
       print("sdf");
       Navigator.push(
@@ -644,7 +656,13 @@ class _HomeState extends State<Home> {
               builder: (context) => RegistrosView12(
                   sharedPreferences.getString('user'), dropdownValue2)));
     }
-
+    if (sharedPreferences.getInt('id_inver') == 15) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => RegistrosView15(
+                  sharedPreferences.getString('user'), dropdownValue2)));
+    }
     if (sharedPreferences.getInt('id_inver') == 16) {
       Navigator.push(
           context,
