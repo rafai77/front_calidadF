@@ -74,6 +74,36 @@ class _Registro16State extends State<Registro16> {
       [this.r]) {
     if (this.r == null) {
       editar = false;
+    } else {
+      editar = true;
+      numT.text = this.r.num_tunel.toString();
+      rac1.text = this.r.racimo1.toString();
+      rac2.text = this.r.racimo1.toString();
+      rac3.text = this.r.racimo1.toString();
+      rac4.text = this.r.racimo1.toString();
+      rac5.text = this.r.racimo1.toString();
+      rac6.text = this.r.racimo1.toString();
+      tam.text = this.r.tamchico.toString();
+      peso.text = this.r.peso.toString();
+      dano['pudricion'] = this.r.pudricion;
+      dano["Flojo"] = this.r.flojo;
+      dano['Dano_Mecanico'] = this.r.mecanico;
+      dano['Blossom'] = this.r.blossom;
+      dano["Mal_cierre"] = this.r.cierre;
+      dano["Deforme"] = this.r.deforme;
+      dano["Cicatriz"] = this.r.cicatriz;
+      dano["Dano_X_insecto"] = this.r.insectod;
+      dano["Incecto_presencia"] = this.r.insectop;
+      dano["Daño_x_virus"] = this.r.dano_virus;
+      dano["Craking"] = this.r.craking;
+      dano["Corte"] = this.r.corte;
+      dano["Golpe"] = this.r.golpe;
+      dano["Extra_verde"] = this.r.exverde;
+      dano["arrudago"] = this.r.arrudago;
+      dano["Blotchy"] = this.r.blotchy;
+      dano["Suelto"] = this.r.suelto;
+      dano["Color Disparejo"] = this.r.color_disparejo;
+      print(this.r.fecha.toString());
     }
     //va para editar los datos
   }

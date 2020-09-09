@@ -607,11 +607,18 @@ class _HomeState extends State<Home> {
     } else {
       id_inver = sharedPreferences.getInt('id_inver');
     }
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                Brixs(sharedPreferences.getString('user'), dropdownValue2)));
+    if (sharedPreferences.getInt('id_inver') != 16) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  Brixs(sharedPreferences.getString('user'), dropdownValue2)));
+    } else {
+      setState(() {
+        mensaje = "Este invernadero no tiene Brixs";
+        _showMyDialog();
+      });
+    }
   }
 
   vista() async {
