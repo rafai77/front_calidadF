@@ -78,11 +78,11 @@ class _Registro16State extends State<Registro16> {
       editar = true;
       numT.text = this.r.num_tunel.toString();
       rac1.text = this.r.racimo1.toString();
-      rac2.text = this.r.racimo1.toString();
-      rac3.text = this.r.racimo1.toString();
-      rac4.text = this.r.racimo1.toString();
-      rac5.text = this.r.racimo1.toString();
-      rac6.text = this.r.racimo1.toString();
+      rac2.text = this.r.racimo2.toString();
+      rac3.text = this.r.racimo3.toString();
+      rac4.text = this.r.racimo4.toString();
+      rac5.text = this.r.racimo5.toString();
+      rac6.text = this.r.racimo6.toString();
       tam.text = this.r.tamchico.toString();
       peso.text = this.r.peso.toString();
       dano['pudricion'] = this.r.pudricion;

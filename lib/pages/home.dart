@@ -18,6 +18,8 @@ import 'Viewlocal.dart';
 import 'inv-12/Viewlocal12.dart';
 import 'package:calidad/pages/Constantes.dart';
 
+import 'inv-16/Viewlocal16.dart';
+
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
 
@@ -534,6 +536,10 @@ class _HomeState extends State<Home> {
       if (s.getInt('id_inver') == 12) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Viewlocal12(datos)));
+      }
+      if (s.getInt('id_inver') == 16) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Viewlocal16(datos)));
       }
     } on FileSystemException {
       print("No tiene archivos locales ");
