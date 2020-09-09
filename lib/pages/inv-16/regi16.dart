@@ -46,6 +46,7 @@ class Regi16 {
     this.racimo5,
     this.racimo6,
     this.tamchico,
+    this.pudricion,
     this.lado,
     this.peso,
     this.flojo,

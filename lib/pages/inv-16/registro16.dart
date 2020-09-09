@@ -218,7 +218,15 @@ class _Registro16State extends State<Registro16> {
   }
 
   bool validateDatos() {
-    if (numT.text == "" || tam.text == "") {
+    if (rac1.text == "" ||
+        rac2.text == "" ||
+        rac3.text == "" ||
+        rac4.text == "" ||
+        rac5.text == "" ||
+        rac6.text == "" ||
+        numT.text == "" ||
+        peso.text == "" ||
+        tam.text == "") {
       setState(() {
         mensaje = "Cajas de texto vacias\nComplete todos los espacios";
         _showMyDialog();
@@ -282,7 +290,7 @@ class _Registro16State extends State<Registro16> {
           print(sharedPreferences.getInt('id_inver'));
           var response;
           try {
-            response = await http.put(Constant.DOMAIN + "/actualizar/",
+            response = await http.put(Constant.DOMAIN + "/actualizar16/",
                 headers: hd,
                 body: {
                   'id': this.r.id_reg.toString(),
