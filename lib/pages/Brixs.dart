@@ -30,10 +30,10 @@ class _BrixsState extends State<Brixs> {
 
   caja() {
     if (datos == null) {
-      datos = {"fecha": "sin datos para mostrar", "Cantidad": 0};
+      datos = ({"fecha": "sin datos para mostrar", "Cantidad": 0});
     }
     if (datos["fecha"] == null)
-      datos = {"fecha": "sin datos para mostrar", "Cantidad": 0};
+      datos = ({"fecha": "sin datos para mostrar", "Cantidad": 0});
     return Container(
       width: MediaQuery.of(context).size.width * .75,
       padding: EdgeInsets.only(top: 15),
@@ -51,7 +51,7 @@ class _BrixsState extends State<Brixs> {
                       MaterialPageRoute(
                           builder: (context) => BrixRegistro(
                               datos["fecha"].substring(0, 10),
-                              "Invernadero-11")))
+                              this.invernadero)))
                 else
                   {
                     setState(() {

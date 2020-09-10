@@ -30,6 +30,8 @@ class _BrixRegistroState extends State<BrixRegistro> {
   String tabla;
   TextEditingController brix1 = TextEditingController(); // numero del tunel
   TextEditingController brix2 = TextEditingController();
+  TextEditingController brix3 = TextEditingController(); // numero del tunel
+  TextEditingController brix4 = TextEditingController();
 
   _BrixRegistroState(this.fecha, this.invernadero);
   @override
@@ -49,8 +51,7 @@ class _BrixRegistroState extends State<BrixRegistro> {
                 //padding: EdgeInsets.only(right: ),
                 child: Column(
                   children: <Widget>[
-                    caja("brix1", brix1),
-                    caja("brix2", brix2),
+                    cajas(),
                     FloatingActionButton(
                         backgroundColor: Colors.green,
                         onPressed: add,
@@ -63,7 +64,28 @@ class _BrixRegistroState extends State<BrixRegistro> {
   @override
   void initState() {
     super.initState();
+    print(this.invernadero);
     if (this.invernadero == "Invernadero-11") this.tabla = "totales11";
+    if (this.invernadero == "Invernadero-12") this.tabla = "totales12";
+    if (this.invernadero == "Invernadero-15") this.tabla = "totales15";
+  }
+
+  cajas() {
+    if (this.invernadero == "Invernadero-11" ||
+        this.invernadero == "Invernadero-15") {
+      return Container(
+          child: Column(
+              children: <Widget>[caja("brix1", brix1), caja("brix2", brix2)]));
+    }
+    if (this.invernadero == "Invernadero-12") {
+      return Container(
+          child: Column(children: <Widget>[
+        caja("brix1", brix1),
+        caja("brix2", brix2),
+        caja("brix3", brix3),
+        caja("brix4", brix4),
+      ]));
+    }
   }
 
   Future<void> _showMyDialog() async {
@@ -98,12 +120,27 @@ class _BrixRegistroState extends State<BrixRegistro> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.getString('tk') != null) {
       var hd = {'vefificador': sharedPreferences.getString('tk')};
-      Map<String, dynamic> body = {
-        "fecha": this.fecha,
-        "tabla": this.tabla,
-        "Brix": (brix1.text),
-        "Brix2": (brix2.text)
-      };
+      Map<String, dynamic> body;
+      if (this.invernadero == "Invernadero-11" ||
+          this.invernadero == "Invernadero-15") {
+        body = {
+          "fecha": this.fecha,
+          "tabla": this.tabla,
+          "Brix": (brix1.text),
+          "Brix2": (brix2.text)
+        };
+      }
+      if (this.invernadero == "Invernadero-12") {
+        body = {
+          "fecha": this.fecha,
+          "tabla": this.tabla,
+          "Brix1": (brix1.text),
+          "Brix2": (brix2.text),
+          "Brix3": (brix3.text),
+          "Brix4": (brix4.text)
+        };
+      }
+
       var response;
       try {
         response = await http
