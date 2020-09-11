@@ -30,12 +30,17 @@ dependencies:
   cupertino_icons: ^0.1.3
   http: any
   shared_preferences: any
-  connectivity: 0.4.5+3
+  connectivity: ^0.4.2
   date_format: any
   custom_switch: any
   path_provider: ^ 0.4.1 
+  flutter_launcher_icons: ^0.7.4
 
 
+flutter_icons:
+    image_path: 'assets/images/Sin título-2.png'
+    android: true
+    ios: true
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +58,8 @@ flutter:
   uses-material-design: true
   assets:
       - assets/images/
+
+  
 
   # To add assets to your application, add an assets section, like this:
   # assets:
