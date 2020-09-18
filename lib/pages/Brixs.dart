@@ -138,6 +138,9 @@ class _BrixsState extends State<Brixs> {
       if (this.invernadero == "Invernadero-12") {
         inv = "totales12";
       }
+      if (this.invernadero == "Invernadero-15") {
+        inv = "totales15";
+      }
       if (this.invernadero == "Invernadero-11") {
         inv = "totales11";
       }

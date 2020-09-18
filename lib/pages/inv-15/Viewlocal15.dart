@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:calidad/pages/inv-15/registro15info.dart';
 import 'package:calidad/pages/inv-16/registro16info.dart';
 import 'package:http/http.dart' as http;
 
@@ -115,7 +116,7 @@ class _Viewlocal15State extends State<Viewlocal15> {
                                                           context,
                                                           MaterialPageRoute(
                                                               builder: (context) =>
-                                                                  RegInfo16(
+                                                                  RegInfo15(
                                                                       snapshot.data[
                                                                           index],
                                                                       true))),
