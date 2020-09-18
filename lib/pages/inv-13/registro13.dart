@@ -145,7 +145,7 @@ class _Registro13State extends State<Registro13> {
         children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width * .49,
-            padding: EdgeInsets.only(top: 1, left: 16, right: 16, bottom: 4),
+            padding: EdgeInsets.only(top: 1, left: 16, right: 16, bottom: 1),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 color: Colors.white,
@@ -499,7 +499,7 @@ class _Registro13State extends State<Registro13> {
 
   all() {
     return Container(
-        height: MediaQuery.of(context).size.height * .9,
+        height: MediaQuery.of(context).size.height * .90,
         child: Column(
           children: <Widget>[
             Container(
@@ -583,7 +583,7 @@ class _Registro13State extends State<Registro13> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 8),
+              //padding: EdgeInsets.only(top: 8),
               height: MediaQuery.of(context).size.height * .3,
               width: MediaQuery.of(context).size.width / 1,
               child: ListView(
@@ -705,13 +705,14 @@ class _Registro13State extends State<Registro13> {
               FocusScope.of(context).requestFocus(new FocusNode());
             },
             child: Container(
-                //padding: EdgeInsets.only(right: ),
-                child: Column(
+                // padding: EdgeInsets.only(bottom: 0),
+                child: SingleChildScrollView(
+                    child: Column(
               children: <Widget>[
                 (nuser == null)
                     ? Center(child: CircularProgressIndicator())
                     : all(),
               ],
-            ))));
+            )))));
   }
 }

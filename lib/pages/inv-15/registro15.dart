@@ -658,12 +658,13 @@ class _Registro15State extends State<Registro15> {
             },
             child: Container(
                 //padding: EdgeInsets.only(right: ),
-                child: Column(
+                child: SingleChildScrollView(
+                    child: Column(
               children: <Widget>[
                 (nuser == null)
                     ? Center(child: CircularProgressIndicator())
                     : all(),
               ],
-            ))));
+            )))));
   }
 }

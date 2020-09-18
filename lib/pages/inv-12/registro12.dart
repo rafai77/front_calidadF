@@ -622,14 +622,14 @@ class _RegistroState12 extends State<Registro12> {
               FocusScope.of(context).requestFocus(new FocusNode());
             },
             child: Container(
-                //padding: EdgeInsets.only(right: ),
-                child: Column(
+                child: SingleChildScrollView(
+                    child: Column(
               children: <Widget>[
                 (nuser == null)
                     ? Center(child: CircularProgressIndicator())
                     : all(),
               ],
-            ))));
+            )))));
   }
 }
 

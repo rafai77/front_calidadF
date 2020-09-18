@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:calidad/pages/Brixs.dart';
 import 'package:calidad/pages/inv-12/Registros12.dart';
 import 'package:calidad/pages/inv-12/registro12.dart';
+import 'package:calidad/pages/inv-15/Viewlocal15.dart';
 import 'package:calidad/pages/inv-16/Registros16.dart';
 import 'package:calidad/pages/inv-16/registro16.dart';
 import 'package:calidad/pages/registro.dart';
@@ -18,6 +19,9 @@ import 'Viewlocal.dart';
 import 'inv-12/Viewlocal12.dart';
 import 'package:calidad/pages/Constantes.dart';
 
+import 'inv-13/Registros13.dart';
+import 'inv-13/Viewlocal13.dart';
+import 'inv-13/registro13.dart';
 import 'inv-15/Registros15.dart';
 import 'inv-15/registro15.dart';
 import 'inv-16/Viewlocal16.dart';
@@ -539,6 +543,15 @@ class _HomeState extends State<Home> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Viewlocal12(datos)));
       }
+      if (s.getInt('id_inver') == 13) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Viewlocal13(datos)));
+      }
+      if (s.getInt('id_inver') == 15) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Viewlocal15(datos)));
+      }
+
       if (s.getInt('id_inver') == 16) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Viewlocal16(datos)));
@@ -597,12 +610,24 @@ class _HomeState extends State<Home> {
                   dropdownValue1,
                   id_inver)));
     }
+
     if (sharedPreferences.getInt('id_inver') == 16) {
       print("sdf");
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => Registro16(
+                  sharedPreferences.getInt('id'),
+                  sharedPreferences.getString('user'),
+                  dropdownValue1,
+                  id_inver)));
+    }
+    if (sharedPreferences.getInt('id_inver') == 13) {
+      print("sdf");
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Registro13(
                   sharedPreferences.getInt('id'),
                   sharedPreferences.getString('user'),
                   dropdownValue1,
@@ -625,7 +650,9 @@ class _HomeState extends State<Home> {
     } else {
       id_inver = sharedPreferences.getInt('id_inver');
     }
-    if (sharedPreferences.getInt('id_inver') != 16) {
+    if (sharedPreferences.getInt('id_inver') != 16 &&
+        sharedPreferences.getInt('id_inver') != 13 &&
+        sharedPreferences.getInt('id_inver') != 14) {
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -661,6 +688,13 @@ class _HomeState extends State<Home> {
           context,
           MaterialPageRoute(
               builder: (context) => RegistrosView15(
+                  sharedPreferences.getString('user'), dropdownValue2)));
+    }
+    if (sharedPreferences.getInt('id_inver') == 13) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => RegistrosView13(
                   sharedPreferences.getString('user'), dropdownValue2)));
     }
     if (sharedPreferences.getInt('id_inver') == 16) {
