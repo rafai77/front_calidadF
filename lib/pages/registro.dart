@@ -26,6 +26,7 @@ class Registro extends StatefulWidget {
 
 class _RegistroState extends State<Registro> {
   String nuser = " ";
+  bool send = false;
   int id_inver;
   String mensaje;
   bool local;
@@ -319,14 +320,18 @@ class _RegistroState extends State<Registro> {
           print(sharedPreferences.getInt('id_inver'));
           var response;
           try {
+            setState(() {
+              send = true;
+            });
             response = await http.put(Constant.DOMAIN + "/actualizar/",
                 headers: hd,
                 body: {
                   'id': this.r.id_reg.toString(),
                   'REG': json.encode(registro)
-                }).timeout(const Duration(seconds: 7));
+                }).timeout(const Duration(seconds: 15));
           } on TimeoutException catch (_) {
             setState(() {
+              send = false;
               mensaje = 'Sin conexion al servidor\n';
               _showMyDialog();
               Navigator.pop(context);
@@ -335,6 +340,7 @@ class _RegistroState extends State<Registro> {
             throw ('Sin conexion al servidor');
           } on SocketException {
             setState(() {
+              send = false;
               throw ('Sin internet  o falla de servidor ');
             });
           } on HttpException {
@@ -430,12 +436,16 @@ class _RegistroState extends State<Registro> {
                 body: {
                   'REG': json.encode(registro)
                 }).timeout(const Duration(seconds: 15));
+            setState(() {
+              send = true;
+            });
           } on TimeoutException catch (_) {
             setState(() {
               sinConexion(registro);
               mensaje =
                   'Sin conexion al servidor\n se guardo el registro localmente';
               _showMyDialog();
+              send = false;
               Navigator.pop(context);
               Navigator.pop(context);
             });
@@ -443,6 +453,7 @@ class _RegistroState extends State<Registro> {
           } on SocketException {
             setState(() {
               sinConexion(registro);
+              send = false;
               throw ('Sin internet  o falla de servidor ');
             });
           } on HttpException {
@@ -660,9 +671,7 @@ class _RegistroState extends State<Registro> {
                 //padding: EdgeInsets.only(right: ),
                 child: Column(
               children: <Widget>[
-                (nuser == null)
-                    ? Center(child: CircularProgressIndicator())
-                    : all(),
+                (!send) ? all() : Center(child: CircularProgressIndicator()),
               ],
             ))));
   }

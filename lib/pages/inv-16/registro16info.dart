@@ -160,6 +160,7 @@ class _RegInfoState16 extends State<RegInfo16> {
                         Text("Mecanico =: " + this.r.mecanico.toString()),
                         Text("Blossom =: " + this.r.blossom.toString()),
                         Text("cierre =: " + this.r.cierre.toString()),
+                        Text("Cicatriz =: " + this.r.cierre.toString()),
                         Text("Insecto presencia =: " +
                             this.r.insectop.toString()),
                         Text("craking =: " + this.r.craking.toString()),
