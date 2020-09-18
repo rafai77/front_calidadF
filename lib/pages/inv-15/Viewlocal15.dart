@@ -14,21 +14,21 @@ import 'package:calidad/pages/Constantes.dart';
 
 import '../Regi.dart';
 
-class Viewlocal extends StatefulWidget {
+class Viewlocal15 extends StatefulWidget {
   @override
   var datos;
-  Viewlocal([this.datos]);
+  Viewlocal15([this.datos]);
 
-  _ViewlocalState createState() => _ViewlocalState(this.datos);
+  _Viewlocal15State createState() => _Viewlocal15State(this.datos);
 }
 
-class _ViewlocalState extends State<Viewlocal> {
+class _Viewlocal15State extends State<Viewlocal15> {
   @override
   var datos;
   String mensaje;
   bool lista;
   StreamController<List<Regi>> ldR;
-  _ViewlocalState([this.datos]);
+  _Viewlocal15State([this.datos]);
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
